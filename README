@@ -1,5 +1,7 @@
 h1. Sweeper, a HDFS browser
 
+Sweeper is a small HDFS browser that let's you visualize files stats on Hadoop. We use it at Ning to quickly find large directories to cleanup (with large amounts of small files) to keep the number of files managed by our namenode under control.
+
 h2. USAGE
 
 java -jar target/metrics.sweeper-1.0.0-SNAPSHOT-jar-with-dependencies.jar
