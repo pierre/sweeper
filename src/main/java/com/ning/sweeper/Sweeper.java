@@ -16,9 +16,11 @@
 
 package com.ning.sweeper;
 
+import com.ning.sweeper.config.ContentSummaryTypes;
 import com.ning.sweeper.config.SweeperConfig;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
+import org.apache.log4j.Logger;
 import org.skife.config.ConfigurationObjectFactory;
 
 import javax.swing.*;
@@ -27,11 +29,14 @@ import java.io.IOException;
 
 public class Sweeper
 {
+    private final static Logger log = Logger.getLogger(Sweeper.class.getName());
+
     public static void main(String[] args) throws IOException
     {
         SweeperConfig sweeperConfig = new ConfigurationObjectFactory(System.getProperties()).build(SweeperConfig.class);
         Configuration hadoopConfig = configureHDFSAccess(sweeperConfig);
 
+        log.info("Sweeper configured");
         drawBrowser(hadoopConfig, sweeperConfig);
     }
 
@@ -51,7 +56,7 @@ public class Sweeper
         FileSystem fs = FileSystem.get(hadoopConfig);
         JFrame frame = new JFrame("Sweeper");
 
-        HdfsItem items = new HdfsItem(fs, sweeperConfig.getPath(), sweeperConfig.getContentSummary());
+        HdfsItem items = new HdfsItem(fs, sweeperConfig.getPath(), ContentSummaryTypes.valueOf(sweeperConfig.getContentSummary()));
         SweeperColumns columns = new SweeperColumns(items);
 
         columns.setBackground(Color.RED);

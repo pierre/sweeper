@@ -17,6 +17,7 @@
 package com.ning.sweeper;
 
 import com.google.common.collect.ImmutableList;
+import org.apache.log4j.Logger;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -40,6 +41,8 @@ import java.util.concurrent.Future;
 
 public class SweeperColumns extends JComponent
 {
+    private static final Logger log = Logger.getLogger(SweeperColumns.class.getName());
+
     private static final ExecutorService EXECUTOR = Executors.newFixedThreadPool(5);
 
     private final List<Column> columns = new ArrayList<Column>();
@@ -107,8 +110,7 @@ public class SweeperColumns extends JComponent
                         totalSize = item.getTotalSize();
                     }
                     catch (Exception e) {
-                        System.err.println("Failed to fetch " + item);
-                        e.printStackTrace();
+                        log.warn(String.format("Failed to fetch [%s] (%s)", item, e.getCause()));
                         totalSize = -1;
                     }
                     finally {
@@ -340,6 +342,7 @@ public class SweeperColumns extends JComponent
     public SweeperColumns(Item items)
     {
         super();
+
         this.itemHeight = renderer.getPreferredSize().height;
         renderer.setOpaque(true);
         renderer.setBorder(new EmptyBorder(0, 2, 0, 2));

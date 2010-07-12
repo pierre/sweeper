@@ -1,12 +1,29 @@
-Sweeper, a HDFS browser
-=======================
+h1. Sweeper, a HDFS browser
 
-BUILD
-=====
+h2. USAGE
 
-mvn assembly:assembly
+@java -jar target/metrics.sweeper-1.0.0-SNAPSHOT-jar-with-dependencies.jar@
 
-LICENSE
-=======
+You can configure the namenode url via @sweeper.hadoop.namenode.url@:
+
+@java  -Dsweeper.hadoop.namenode.url=hdfs://namenode.mycompany.com:9000 -jar target/metrics.sweeper-1.0.0-SNAPSHOT-jar-with-dependencies.jar@
+
+You can configure the credentials via @sweeper.hadoop.ugi@ (make sure to escape the coma):
+
+@java -Dsweeper.hadoop.ugi='hadoop-user\,hadoop-group' -jar target/metrics.sweeper-1.0.0-SNAPSHOT-jar-with-dependencies.jar@
+
+By default, the browser will look at the entire cluster. You can specify a specific path via @sweeper.hadoop.path@:
+
+@java -Dsweeper.hadoop.path=/user/pierre -jar target/metrics.sweeper-1.0.0-SNAPSHOT-jar-with-dependencies.jar@
+
+By default, files and directories size are shown (taking into account the replication factor). To show the number of files, use @sweeper.content_summary=NUMBER_OF_FILES@:
+
+@java -Dsweeper.content_summary=NUMBER_OF_FILES -jar target/metrics.sweeper-1.0.0-SNAPSHOT-jar-with-dependencies.jar@
+
+h2. BUILD
+
+@mvn assembly:assembly@
+
+h2. LICENSE
 
 See COPYING file.

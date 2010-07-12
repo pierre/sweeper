@@ -21,11 +21,14 @@ import com.ning.sweeper.config.ContentSummaryTypes;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 
 public class HdfsItem implements Item
 {
+    private final static Logger log = Logger.getLogger(HdfsItem.class.getName());
+
     private final FileSystem fs;
     private final Path path;
     private final String name;
@@ -78,9 +81,7 @@ public class HdfsItem implements Item
 
             }
             catch (IOException e) {
-                System.err.println("Failed to get size of " + path);
-                e.printStackTrace();
-
+                log.warn(String.format("Failed to get size of [%s] (%s)", path, e.getCause()));
                 return -1L;
             }
         }

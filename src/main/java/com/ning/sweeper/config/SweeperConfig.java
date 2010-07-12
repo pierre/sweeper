@@ -16,7 +16,6 @@
 
 package com.ning.sweeper.config;
 
-import com.ning.sweeper.config.ContentSummaryTypes;
 import org.skife.config.Config;
 
 public class SweeperConfig
@@ -40,8 +39,9 @@ public class SweeperConfig
     }
 
     @Config(value = "sweeper.content_summary")
-    public ContentSummaryTypes getContentSummary()
+    public String getContentSummary()
     {
-        return ContentSummaryTypes.SPACE_USED;
+        // config-magic doesn't support enums :(
+        return "SPACE_USED";
     }
 }
