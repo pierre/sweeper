@@ -1,0 +1,12 @@
+Sweeper, a HDFS browser
+=======================
+
+BUILD
+=====
+
+mvn assembly:assembly
+
+LICENSE
+=======
+
+See COPYING file.
