@@ -14,7 +14,7 @@ You can configure the credentials via sweeper.hadoop.ugi (make sure to escape th
 
 java -Dsweeper.hadoop.ugi='hadoop-user\,hadoop-group' -jar target/metrics.sweeper-1.0.0-SNAPSHOT-jar-with-dependencies.jar
 
-By default, the browser will look at the entire cluster. You can specify a specific path via @sweeper.hadoop.path@:
+By default, the browser will look at the entire cluster. You can specify a specific path via sweeper.hadoop.path:
 
 java -Dsweeper.hadoop.path=/user/pierre -jar target/metrics.sweeper-1.0.0-SNAPSHOT-jar-with-dependencies.jar
 
