@@ -3,7 +3,7 @@
     <groupId>com.ning</groupId>
     <artifactId>metrics.sweeper</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>sweeper</name>
     <description>An HDFS browser</description>
     <url>http://github.com/pierre/sweeper</url>
